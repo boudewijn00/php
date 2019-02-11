@@ -15,6 +15,7 @@ build-master:
     - echo "the image tag is $IMAGE_TAG"
     - docker build --pull -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
+    - docker run $IMAGE_TAG
   only:
     - master
 build-tag:
