@@ -31,6 +31,6 @@ deploy:
     stage: deploy
     variables:
       IMAGE_TAG: $CI_REGISTRY_IMAGE/php
-      script:
+    script:
       - docker pull $IMAGE_TAG
       - docker run -d -p 80:80 $IMAGE_TAG
