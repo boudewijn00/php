@@ -15,7 +15,6 @@ build-master:
     - echo "the image tag is $IMAGE_TAG"
     - docker build --pull -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
-    - docker run $IMAGE_TAG
   only:
     - master
 build-tag:
@@ -28,3 +27,10 @@ build-tag:
       - docker push $IMAGE_TAG
     only:
       - tags
+deploy:
+    stage: deploy
+    variables:
+      IMAGE_TAG: $CI_REGISTRY_IMAGE/php
+      script:
+      - docker pull $IMAGE_TAG
+      - docker run -d -p 80:80 $IMAGE_TAG
